@@ -2,7 +2,7 @@
 
 ## 📌 Overview
 This project focuses on **cleaning, validating, and analyzing Indian PAN (Permanent Account Number) data** using PostgreSQL.  
-It demonstrates end-to-end data preprocessing, validation using business rules, and generating actionable insights from raw data.
+It demonstrates an end-to-end data workflow including preprocessing, validation using business rules, and generating actionable insights.
 
 ---
 
@@ -17,65 +17,60 @@ It demonstrates end-to-end data preprocessing, validation using business rules, 
 
 ## 🧾 Dataset Details
 - **Total Records (Raw Data):** 10,000  
-- Dataset contains PAN numbers with inconsistencies such as:
-  - Missing values  
-  - Duplicate entries  
-  - Incorrect formats  
-  - Case inconsistencies  
-  - Extra spaces  
+
+The dataset contains inconsistencies such as:
+- Missing values  
+- Duplicate entries  
+- Incorrect formats  
+- Case inconsistencies  
+- Extra spaces  
 
 ---
 
 ## 📥 Data Import Process
+The dataset was originally in Excel format and loaded into PostgreSQL using:
 
-The dataset was originally provided in Excel format and was imported into PostgreSQL using the following steps:
-
-1. Converted the Excel file (.xlsx) to a CSV file
-2. Created a table in PostgreSQL to store PAN data
-3. Imported the CSV file into PostgreSQL
+1. Converted `.xlsx` → `.csv`  
+2. Created table in PostgreSQL  
+3. Imported CSV using SQL  
 
 ---
 
 ## 🧹 Data Cleaning Process
-
-The following steps were performed to ensure data quality:
-
 - Removed **NULL and blank values**  
 - Trimmed **leading and trailing spaces**  
-- Standardized data by converting PANs to **uppercase**  
-- Removed **duplicate records** using PostgreSQL (`ctid`)  
+- Standardized data using **UPPER()**  
+- Removed duplicates using **ctid**  
 
 ---
 
 ## ✅ PAN Validation Rules
 
-A PAN is considered **valid** if it satisfies:
-
 ### 🔹 Format Rules
-- Must be exactly **10 characters**
-- Format: `AAAAA1234A`
-  - First 5 → Alphabets (A–Z)
-  - Next 4 → Digits (0–9)
-  - Last 1 → Alphabet
+- Must be exactly **10 characters**  
+- Format: `AAAAA1234A`  
+  - First 5 → Alphabets (A–Z)  
+  - Next 4 → Digits (0–9)  
+  - Last 1 → Alphabet  
 
 ### 🔹 Business Rules
-- ❌ No **consecutive repeating characters** (e.g., `AABCD`, `1123`)  
-- ❌ No **sequential characters** (e.g., `ABCDE`, `1234`)  
+- ❌ No consecutive repeating characters (e.g., `AABCD`, `1123`)  
+- ❌ No sequential characters (e.g., `ABCDE`, `1234`)  
 
-Validation was implemented using:
+Validation implemented using:
 - **Regular Expressions (Regex)**
-- **SQL conditional logic**
+- **SQL CASE logic**
 
 ---
 
 ## ⚙️ Implementation
 
 Key SQL techniques used:
-- Data Cleaning (`TRIM`, `UPPER`, filtering NULLs)
-- Deduplication using `ctid`
-- Pattern validation using **Regex (`~`)**
-- Conditional classification using `CASE WHEN`
-- Aggregation using `COUNT` and `FILTER`
+- Data cleaning: `TRIM`, `UPPER`  
+- Deduplication using `ctid`  
+- Pattern validation using `~` (Regex)  
+- Conditional logic using `CASE WHEN`  
+- Aggregation using `COUNT` and `FILTER`  
 
 ---
 
@@ -90,6 +85,8 @@ Key SQL techniques used:
 | ✅ Valid PANs            | 3,188 |
 | ❌ Invalid PANs          | 5,837 |
 
+📄 Detailed output available in `summary_report.txt`
+
 ---
 
 ## 📈 Key Insights
@@ -97,49 +94,41 @@ Key SQL techniques used:
 - Majority of invalid PANs failed due to:
   - Incorrect format  
   - Sequential or repeating characters  
-- Highlights importance of **data validation in real-world datasets**
+- Highlights importance of **data validation in real-world datasets**  
 
 ---
 
 ## 🛠️ Tools & Technologies
-- **PostgreSQL**
-- **SQL**
-  - CTEs
-  - Regex
-  - Data Cleaning Techniques
+- PostgreSQL  
+- SQL  
+  - CTEs  
+  - Regex  
+  - Data Cleaning Techniques  
 
 ---
 
 ## 💡 Key Learnings
-- Real-world data is often **messy and inconsistent**
-- Importance of **data cleaning before analysis**
-- Efficient use of **SQL for data validation**
-- Writing **scalable and maintainable queries**
-- Applying **business rules using logic + regex**
+- Real-world data is often messy and inconsistent  
+- Importance of data cleaning before analysis  
+- Efficient use of SQL for validation  
+- Writing scalable and maintainable queries  
+- Applying business rules using logic + regex  
+- Experience in data ingestion (Excel → CSV → PostgreSQL)  
 
 ---
 
-## 📂 Project Structure
-PAN-Validation-Project/
-│
-├── data/
-│ └── PAN_Number_Validation_Dataset.xlsx
-│
-├── sql/
-│ └── pan_validation.sql
-│
-├── results/
-│ └── summary_report.txt
-│
-└── README.md
+## 📂 Project Files
+- `README.md` – Project documentation  
+- `pan_validation.sql` – SQL script for cleaning & validation  
+- `summary_report.txt` – Final results summary  
 
 ---
 
 ## 🚀 How to Run
-1. Import dataset into PostgreSQL  
-2. Run SQL script from `/sql/pan_validation.sql`  
-3. View cleaned data and validation results  
-4. Generate summary report  
+1. Import dataset (CSV) into PostgreSQL  
+2. Run `pan_validation.sql`  
+3. View validation results  
+4. Check summary in `summary_report.txt`  
 
 ---
 
