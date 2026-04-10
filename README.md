@@ -120,5 +120,29 @@ Key SQL techniques used:
 ---
 
 ## 📂 Project Structure
+PAN-Validation-Project/
+│
+├── data/
+│ └── PAN_Number_Validation_Dataset.xlsx
+│
+├── sql/
+│ └── pan_validation.sql
+│
+├── results/
+│ └── summary_report.txt
+│
+└── README.md
 
+---
+
+## 🚀 How to Run
+1. Import dataset into PostgreSQL  
+2. Run SQL script from `/sql/pan_validation.sql`  
+3. View cleaned data and validation results  
+4. Generate summary report  
+
+---
+
+## ⭐ If you like this project
+Give it a ⭐ on GitHub — it helps others discover it!
 
