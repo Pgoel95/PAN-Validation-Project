@@ -1,0 +1,23 @@
+PAN Number Validation - Summary Report
+
+-------------------------------------
+
+Total Records (Raw Data): 10,000
+
+Missing / Incomplete PANs Removed: 967
+Duplicate PANs Removed: 8
+
+-------------------------------------
+
+Final Records Processed: 9,025
+
+Valid PANs: 3,188
+Invalid PANs: 5,837
+
+-------------------------------------
+
+Insights:
+
+- Approximately 35% of PANs are valid after cleaning
+- Majority of invalid PANs failed due to incorrect format or sequence violations
+- Data cleaning significantly improved data quality and usability
